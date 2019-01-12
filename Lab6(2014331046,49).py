@@ -37,8 +37,6 @@ while(1):
 	if command == 0:
 		break
 
-	then = time.time() #Time before the operations start
-
 	if command == 1:
 		### link: https://techtutorialsx.com/2018/04/09/python-pycrypto-using-aes-128-in-ecb-mode/
 		from Crypto.Cipher import AES
@@ -56,6 +54,7 @@ while(1):
 				key128 = 'abcdefghijklmnop'
 				print('Please, enter your Plain text')
 				plain_text = input()
+				then = time.time() #Time before the operations start
 				l = len(plain_text)
 				plain_text = padding(plain_text)
 				# plain_text = 'TechTutorialsX!!TechTutorialsX!!'
@@ -67,11 +66,12 @@ while(1):
 				d = decipher.decrypt(cipher_text)
 				print("==> Decrypted text: ", d[0:l], "\n")
 				now = time.time()
-				print("It took: ", now-then, " seconds", "\n")
+				print("It took ", now-then, " seconds", " to perform the operations\n")
 			else:
 				key256 = 'abcdefghijklmnop1234569874123658'
 				print('Please, enter your Plain text')
 				plain_text = input()
+				then = time.time() #Time before the operations start
 				l = len(plain_text)
 				plain_text = padding(plain_text)
 				cipher = AES.new(key256, AES.MODE_ECB)
@@ -81,7 +81,7 @@ while(1):
 				d = decipher.decrypt(cipher_text)
 				print("==> Decrypted text: ",d[0:l], "\n")
 				now = time.time()
-				print("It took: ", now-then, " seconds", "\n")
+				print("It took: ", now-then, " seconds", " to perform the operations\n")
 		else:
 			print('Enter 1 for key length = 128')
 			print('Enter 2 for key length = 256\n')
@@ -90,6 +90,7 @@ while(1):
 				key128 = 'abcdefghijklmnop'
 				print('Please, enter your Plain text')
 				plain_text = input()
+				then = time.time() #Time before the operations start
 				l = len(plain_text)
 				plain_text = padding(plain_text)
 				print(len(plain_text))
@@ -101,11 +102,12 @@ while(1):
 				d = decipher.decrypt(cipher_text)
 				print("==> Decrypted text: ", d[0:l], "\n")
 				now = time.time()
-				print("It took: ", now-then, " seconds", "\n")
+				print("It took: ", now-then, " seconds", " to perform the operations\n")
 			else:
 				key256 = 'abcdefghijklmnop1234569874123658'
 				print('Please, enter your Plain text')
 				plain_text = input()
+				then = time.time() #Time before the operations start
 				l = len(plain_text)
 				plain_text = padding(plain_text)
 				iv = os.urandom(16)
@@ -116,7 +118,7 @@ while(1):
 				d = decipher.decrypt(cipher_text)
 				print("==> Decrypted text: ", d[0:l], "\n")
 				now = time.time()
-				print("It took: ", now-then, " seconds", "\n")
+				print("It took: ", now-then, " seconds", " to perform the operations\n")
 	elif command == 2:
 		#link: https://stackoverflow.com/questions/30056762/rsa-encryption-and-decryption-in-python
 
@@ -137,6 +139,7 @@ while(1):
 		print('Please, enter your message')
 
 		message = input()
+		then = time.time() #Time before the operations start
 		ecrypted_message = publickey.encrypt(message.encode('utf-8'), 32)
 
 		print ('==> Encrypted message: ', ecrypted_message) #ciphertext
@@ -150,18 +153,18 @@ while(1):
 		decrypted_message = key.decrypt(ast.literal_eval(str(ecrypted_message)))
 
 		print ('==> Decrypted message: ', decrypted_message, "\n")
-		now = time.time()
-		print("It took: ", now-then, " seconds", "\n")
 
 		##Save the encrypted and decrypted message...
 		f = open ('RSA_encryption.txt', 'w')
 		f.write("==> Encrypted mesage: " + str(ecrypted_message))
 		f.write("\n\n==> Decrypted mesage: " + str(decrypted_message))
 		f.close()
-
+		now = time.time()
+		print("It took: ", now-then, " seconds", " to perform the operations\n")
 	elif command == 3:
 		print('Please, enter your message')
 		message = input()
+		then = time.time() #Time before the operations start
 		message = message.encode('utf-8')
 
 		f = open ('message.txt', 'w')##message save..
@@ -203,11 +206,12 @@ while(1):
 		else:
 		    print("Temparing signing\n")
 		now = time.time()
-		print("It took: ", now-then, " seconds", "\n")
+		print("It took: ", now-then, " seconds", " to perform the operations\n")
 
 	else:
 		print('Please, enter your message')
 		message = input()
+		then = time.time() #Time before the operations start
 		print("==> SHA256 Hashed value of the message: ", SHA256.new(message.encode('utf-8')).hexdigest(), "\n")
 		now = time.time()
-		print("It took: ", now-then, " seconds", "\n\n")
+		print("It took: ", now-then, " seconds", " to perform the operations\n\n")
